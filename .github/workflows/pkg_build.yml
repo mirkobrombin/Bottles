@@ -7,10 +7,16 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: kentik/pkg@v1
-        with:
-          name: bottles
-          version: 0.0.1
-          arch: x86_64
-          format: deb
-          package: package.yaml
+      - uses: actions/checkout@v2
+      - name: Get Version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(cat VERSION)
+        
+      - name: Installing build dependencies
+        run: |
+          sudo apt install -y debhelper python3 python3.8-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson
+      
+      - name: Build debian package
+        run: dpkg-buildpackage
+      - name: ls
+        run: ls
