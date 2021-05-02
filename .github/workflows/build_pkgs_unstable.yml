@@ -1,4 +1,4 @@
-name: Deb Release
+name: Build unstable packages
 on:
   push:
     branches: [ master ]
