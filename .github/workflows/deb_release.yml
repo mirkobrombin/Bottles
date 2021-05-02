@@ -1,7 +1,7 @@
 name: Deb Release
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ master ]
   workflow_dispatch:
 jobs:
   build:
@@ -11,8 +11,3 @@ jobs:
       
       - name: Build Debian package
         uses: dawidd6/action-debian-package@v1
-        with:
-          # Optional, relative to workspace directory
-          source_directory: lolcat
-          # Optional, relative to workspace directory
-          artifacts_directory: output
