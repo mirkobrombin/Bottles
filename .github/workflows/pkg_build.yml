@@ -1,0 +1,16 @@
+name: Deb Release
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: kentik/pkg@v1
+        with:
+          name: bottles
+          version: 0.0.1
+          arch: x86_64
+          format: deb
+          package: package.yaml
