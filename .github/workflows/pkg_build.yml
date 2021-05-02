@@ -18,8 +18,18 @@ jobs:
       
       - name: Build debian package
         run: dpkg-buildpackage
-        
-      - name: ls
+      
+      - name: Rename
         run: |
-          ls
-          ls ../
+          mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
+        
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          draft: false
+          prerelease: false
+          automatic_release_tag: unstable
+          title: Unstable build
+          files: |
+            Bottles-*-x86_64.AppImage*
+            com.usebottles.bottles-unstable.deb
