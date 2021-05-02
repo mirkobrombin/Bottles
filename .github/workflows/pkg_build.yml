@@ -18,5 +18,8 @@ jobs:
       
       - name: Build debian package
         run: dpkg-buildpackage
+        
       - name: ls
-        run: ls
+        run: |
+          ls
+          ls ../
