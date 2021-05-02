@@ -30,6 +30,9 @@ jobs:
           
       - name: Install appimage-builder tool
         run: yes | sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
+        
+      - name: Build AppImage
+        run: appimage-builder --recipe AppImageBuilder.yml --skip-test
       
       
       # Deb Build
